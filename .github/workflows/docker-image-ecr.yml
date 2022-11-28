@@ -9,7 +9,7 @@ on:
 
 jobs:
 
-  build1:
+  build_latest_image:
 
     runs-on: ubuntu-latest
     steps:
@@ -55,7 +55,7 @@ jobs:
          #docker build . -t $ECR_REGISTRY/$ECR_REPOSITORY:$(date +%s)
          #docker push $ECR_REGISTRY/$ECR_REPOSITORY:$(date +%s)
     
-  build2:
+  build_incremental_image:
 
     runs-on: ubuntu-latest
     steps:
