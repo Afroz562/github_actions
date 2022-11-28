@@ -92,54 +92,10 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: test_repo
+        #TIME: "${{ steps.current-time.outputs.time }}"
       run: |
          
           docker build . -t $ECR_REGISTRY/$ECR_REPOSITORY:${{github.run_number}}
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{github.run_number}} 
-  
-  build_timestamp_images:
-
-    runs-on: ubuntu-latest
-    steps:
-
-    - name: Check out code
-      uses: actions/checkout@v2
-
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
-
-    - name: Login to Amazon ECR
-      id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
-    -
-      name: Get timestamp
-      uses: gerred/actions/current-time@master
-      id: current-time
-      
-    - name: Use current time
-      env:
-       TIME: "${{ steps.current-time.outputs.time }}"
-      run: echo $TIME
-
-    - name: Run string replace
-      uses: frabert/replace-string-action@master
-      id: format-time
-      with:
-        pattern: '[:\.]+'
-        string: "${{ steps.current-time.outputs.time }}"
-        replace-with: '-'
-        flags: 'g'
-
-    - name: Build, tag, and push image to Amazon ECR
-      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: test_repo
-        TIME: "${{ steps.current-time.outputs.time }}"
-        run: |
-           #docker build . -t $ECR_REGISTRY/$ECR_REPOSITORY:$TIME
-           #docker push $ECR_REGISTRY/$ECR_REPOSITORY:$TIME
-         
+          #docker build . -t $ECR_REGISTRY/$ECR_REPOSITORY:$TIME
+          #docker push $ECR_REGISTRY/$ECR_REPOSITORY:$TIME
