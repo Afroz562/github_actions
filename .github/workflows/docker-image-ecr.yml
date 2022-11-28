@@ -47,8 +47,9 @@ jobs:
         ECR_REPOSITORY: test_repo
         IMAGE_TAG: latest-${{github.run_number}}
       run: |
-           docker build . -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+           docker build . -t $ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.format-time.outputs.time }}
+           docker images ls
+           docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.format-time.outputs.time }}
           #docker build . -t $ECR_REGISTRY/$ECR_REPOSITORY:${{github.run_number}}
           #docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{github.run_number}} 
           
