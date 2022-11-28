@@ -44,6 +44,10 @@ jobs:
         string: "${{ steps.current-time.outputs.time }}"
         replace-with: '-'
         flags: 'g'
+    - name: Use current time
+      env:
+       TIME_FORMATTED: "${{ steps.format-time.outputs.time }}"
+      run: echo $TIME_FORMATTED
 
     - name: Build, tag, and push image to Amazon ECR
       env:
