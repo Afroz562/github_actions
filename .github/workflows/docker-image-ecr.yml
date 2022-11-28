@@ -44,8 +44,6 @@ jobs:
         string: "${{ steps.current-time.outputs.time }}"
         replace-with: '-'
         flags: 'g'
-    - name: display formmated date
-      run: echo $string
 
     - name: Build, tag, and push image to Amazon ECR
       env:
