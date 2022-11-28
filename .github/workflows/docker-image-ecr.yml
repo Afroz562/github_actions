@@ -49,7 +49,7 @@ jobs:
       run: |
            docker build . -t $ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.format-time.outputs.time }}
            docker images ls
-           docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.format-time.outputs.time }}
+           docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{steps.format-time.outputs.time}}
           #docker build . -t $ECR_REGISTRY/$ECR_REPOSITORY:${{github.run_number}}
           #docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{github.run_number}} 
           
