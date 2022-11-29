@@ -28,7 +28,7 @@ jobs:
       name: Get timestamp
       uses: gerred/actions/current-time@master
       id: current-time
-    - name: Use current time
+    - name: Use currenttime
       env:
        TIME: "${{ steps.current-time.outputs.time }}"
       run: echo $TIME
