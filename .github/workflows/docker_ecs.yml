@@ -42,6 +42,23 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
+        
+      - name: Get timestamp
+        uses: gerred/actions/current-time@master
+        id: current-time
+      - name: Use currenttime 
+        env:
+        TIME: "${{ steps.current-time.outputs.time }}"
+        run: echo $TIME
+
+      - name: Run string replace
+        uses: frabert/replace-string-action@master
+        id: format-time
+         with:
+         pattern: '[:\.]+'
+         string: "${{ steps.current-time.outputs.time }}"
+         replace-with: '-'
+         flags: 'g'
 
       - name: Build, tag, and push image to Amazon ECR
         id: build-image
