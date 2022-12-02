@@ -52,11 +52,11 @@ jobs:
       - name: Download task definition 
         #id : output
         run: |
-          #aws ecr describe-repositories
+         #aws ecr describe-repositories
           #aws ecr list-images --repository-name ecs_repo 
-           aws ecr describe-images --repository-name ecs_repo \
-           --query 'sort_by(imageDetails,& imagePushedAt)[*].imageTags[0]' --output yaml \
-           | head -n 3 | awk -F'- ' '{print $2}'
+          aws ecr describe-images --repository-name ecs_repo  \
+          --query 'sort_by(imageDetails,& imagePushedAt)[*].imageTags[0]' --output yaml \
+           | tail -n 3 | awk -F'- ' '{print $2}'
           #echo $output
           
           #docker pull 056584266475.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:latest
