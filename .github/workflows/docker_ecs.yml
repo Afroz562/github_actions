@@ -72,7 +72,7 @@ jobs:
           Get-ECRImage -RepositoryName ecs_repo
       - name: Download task definition
         run: |
-          aws ecr describe-images --repository-name ecs_repo
+          aws ecr describe-repositories
              
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
