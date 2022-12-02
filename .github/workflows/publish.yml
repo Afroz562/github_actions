@@ -53,17 +53,9 @@ jobs:
         run: |
           aws ecr describe-repositories
           aws ecr list-images --repository-name ecs_repo 
-      - name: Build and Push Image to Amazon ECR
-        run: |
-         docker build -t ${{ secrets.ECR_REPOSITORY_URL }}:${{ github.sha }} .
-         docker push ${{ secrets.ECR_REPOSITORY_URL }}
-      - name: Update Amazon ECS service
-        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-        with:
-          service: ${{ env.ECS_SERVICE }}
-          cluster: ${{ env.ECS_CLUSTER }}
-          container-image-name-updates: container=${{ env.CONTAINER_NAME }},tag=${{ github.sha }}
-          wait-for-service-stability: true
+          docker pull 056584266475.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:latest
+    
+      
              
      
          
