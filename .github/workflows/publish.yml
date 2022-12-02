@@ -1,4 +1,4 @@
-name:  Roll back preivous version image toAmazonECS
+name:  Roll back preivous version image to AmazonECS
 
 on:
   push:
@@ -53,21 +53,19 @@ jobs:
         run: |
           aws ecr describe-repositories
           aws ecr list-images --repository-name ecs_repo 
-             
-      - name: Fill in the new image ID in the Amazon ECS task definition
-        id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@v1
-        with:
-          task-definition: ${{ env.ECS_TASK_DEFINITION }}
-          container-name: ${{ env.CONTAINER_NAME }}
-          #image: ${{ steps.build-image.outputs.image }}
-          image: 056584266475.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:1.0-34-202212021911
-      - name: Deploy Amazon ECS task definition
+      - name: Build and Push Image to Amazon ECR
+        run: |
+         docker build -t ${{ secrets.ECR_REPOSITORY_URL }}:${{ github.sha }} .
+         docker push ${{ secrets.ECR_REPOSITORY_URL }}
+      - name: Update Amazon ECS service
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: ${{ env.ECS_SERVICE }}
           cluster: ${{ env.ECS_CLUSTER }}
+          container-image-name-updates: container=${{ env.CONTAINER_NAME }},tag=${{ github.sha }}
           wait-for-service-stability: true
+             
+     
+         
   
 
