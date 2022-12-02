@@ -69,7 +69,7 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           #echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-          Get-ECRImage -RepositoryName ecs_repo
+          #Get-ECRImage -RepositoryName ecs_repo
       - name: Download task definition
         run: |
           aws ecr describe-repositories
