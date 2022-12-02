@@ -50,7 +50,9 @@ jobs:
       - name: Use current date
         id: date
         #run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
-        run: echo "::set-output name=date::$(date +%Y%m%d%H%M')"
+        run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H:%M:%S')"
+      - name: Echo current date
+        run: echo $date
          
       - name: Build, tag, and push image to Amazon ECR
         id: build-image
