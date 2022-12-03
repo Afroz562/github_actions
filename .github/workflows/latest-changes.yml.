@@ -1,5 +1,8 @@
 name: Manaual Rollback with previous release Changes
 on:
+  push:
+    branches:
+      - master
   workflow_dispatch:
   
  jobs:
