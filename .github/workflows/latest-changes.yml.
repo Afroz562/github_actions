@@ -1,11 +1,7 @@
-name: Manaual Rollback with previous release Changes
-on:
-  push:
-    branches:
-      - master
-  workflow_dispatch:
-  
- jobs:
+- name: Manaual Rollback with previous release Changes
+ on:[master,workflow_dispatch]
+    
+  jobs:
    latest-changes:
     runs-on: ubuntu-latest
     steps:
