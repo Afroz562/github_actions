@@ -45,7 +45,8 @@ jobs:
           cd temp | ls -lrt
           chmod 755 *
           ./test.sh > test.txt
-           cat test.txt | tail -n 3 | awk -F'- ' '{print $2}'| head -2
+           cat test.txt | tail -n 3 > list.txt
+           cat list.txt
            ls -lrt test.txt
           #echo "::set-output name=image::$./test.sh"
           
