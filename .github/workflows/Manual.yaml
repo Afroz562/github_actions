@@ -2,9 +2,12 @@ name: Manual Re Deployment
 on: 
   workflow_dispatch:
     inputs:
-      newUnityVersion:
-        description: 'The new version number string to generate the license activation file for.'
+      logLevel:
+        description: 'Log level'     
         required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'  
 # env:
  #  AWS_REGION: us-east-1                  # set this to your preferred AWS region, e.g. us-west-1
   # ECR_REPOSITORY: ecs_repo          # set this to your Amazon ECR repository name
@@ -27,3 +30,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
+      - run: |
+            echo "Log level: ${{ github.event.inputs.logLevel }}"
+            echo "Tags: ${{ github.event.inputs.tags }}"
+          
