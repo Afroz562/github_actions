@@ -40,11 +40,11 @@ jobs:
      - name: Package version
        id: version
        run: |
-          aws ecr describe-repositories
-          aws ecr list-images --repository-name ecs_repo 
-          aws ecr describe-images --repository-name ecs_repo\
-          --query 'sort_by(imageDetails,& imagePushedAt)[*].imageTags[0]' --output yaml \
-          | tail -n 3 | awk -F'- ' '{print $2}' $2}'
+          #aws ecr describe-repositories
+          #aws ecr list-images --repository-name ecs_repo 
+          aws ecr describe-images --repository-name gvh \
+           --query 'sort_by(imageDetails,& imagePushedAt)[*].imageTags[0]' --output yaml \
+            | tail -n 3 | awk -F'- ' '{print $2}'
           
      - name: Fill in the new image ID in the Amazon ECS task definition
        id: task-def
