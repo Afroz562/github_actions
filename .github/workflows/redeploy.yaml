@@ -58,7 +58,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: ecs_repo
-          IMAGE_TAG: 1.0-66
+          #IMAGE_TAG: 1.0-66
         run: |
           # Build a docker container and
           # push it to ECR so that it can
@@ -66,7 +66,7 @@ jobs:
           #docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           #docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           #echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
-          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          #echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
              
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
@@ -74,8 +74,8 @@ jobs:
         with:
           task-definition: ${{ env.ECS_TASK_DEFINITION }}
           container-name: ${{ env.CONTAINER_NAME }}
-          image: ${{ steps.build-image.outputs.image }}
-          #image: "***.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:1.0-72-202212031159"
+          #image: ${{ steps.build-image.outputs.image }}
+          image: "***.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:1.0-74-2022-12-03_12-56"
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
