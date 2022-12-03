@@ -45,11 +45,6 @@ jobs:
           echo IMAGE=$(aws ecr describe-images --repository-name ecs_repo \
           --query 'sort_by(imageDetails,& imagePushedAt)[*].imageTags[0]' --output yaml \
           | tail -n 3 | awk -F'- ' '{print $2}' | head -1)" >> $GITHUB_OUTPUT
-          env:
-          IMAGE: ${{ steps.build-image.outputs.image }}
-          echo $IMAGE
-          # echo "IMAGE=$IMAGE"
-           #echo $output
            echo "::set-output name=image::$GITHUB_OUTPUT"
           
           #docker pull 056584266475.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:latest
