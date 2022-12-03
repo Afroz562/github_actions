@@ -37,9 +37,11 @@ jobs:
      - name: Login to Amazon ECR
        id: login-ecr
        uses: aws-actions/amazon-ecr-login@v1
-     - name: Display the path
-       working-directory: ./temp
-       run : cd temp | grep ls -lrt 
+     - name: create Directory 
+       #working-directory: ./temp
+       run : |
+          mkdir temp 
+          cd temp | ls -lrt
           
      - name: Fill in the new image ID in the Amazon ECS task definition
        id: task-def
