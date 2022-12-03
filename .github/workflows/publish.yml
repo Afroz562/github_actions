@@ -37,9 +37,9 @@ jobs:
       - name: Download previous image for redeployment 
         id : version
         run: |
-            echo "::set-output name= {name}::{aws ecr describe-images --repository-name ecs_repo \
+            echo "::set-output name=image::aws ecr describe-images --repository-name ecs_repo \
             --query 'sort_by(imageDetails,& imagePushedAt)[*].imageTags[0]' --output yaml \
-            | tail -n 3 | awk -F'- ' '{print $2}' | head -1}"
+            | tail -n 3 | awk -F'- ' '{print $2}' | head -1"
                   
           #docker pull 056584266475.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:latest
       - name: Fill in the new image ID in the Amazon ECS task definition
