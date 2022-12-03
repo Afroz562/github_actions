@@ -38,12 +38,8 @@ jobs:
        id: login-ecr
        uses: aws-actions/amazon-ecr-login@v1
      - name: Display the path
-       run: | 
-          echo $PATH
-          working-directory: ./temp
-          pwd
-          ls -lrt
-          chmod 755 ./test.sh .
+       working-directory: ./temp
+       run : cd temp | grep ls -lrt 
           
      - name: Fill in the new image ID in the Amazon ECS task definition
        id: task-def
