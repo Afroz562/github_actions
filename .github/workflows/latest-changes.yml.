@@ -1,8 +1,13 @@
-name: Rollback with previous release Changes
-
-name: Deploy to mazonECS
+name: Manaual Rollback with previous release Changes
 
 on:
+ # For manually triggering it
+  workflow_dispatch:
+    inputs:
+      number:
+        description: PR number
+        required: true
+
   push:
     branches: [ master ]
   #pull_request:
@@ -17,13 +22,6 @@ on:
                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: myapp           # set this to the name of the container in the
                                                # containerDefinitions section of your task definition
-  # For manually triggering it
-  workflow_dispatch:
-    inputs:
-      number:
-        description: PR number
-        required: true
-
 jobs:
   latest-changes:
     runs-on: ubuntu-latest
