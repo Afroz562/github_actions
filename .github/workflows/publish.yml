@@ -38,12 +38,14 @@ jobs:
        id: login-ecr
        uses: aws-actions/amazon-ecr-login@v1
      - name: create Directory 
+       id : build-image
        #working-directory: ./temp
        run : |
           mkdir temp 
           cd temp | ls -lrt
           chmod 755 *
-          ./test.sh | cat text
+          #./test.sh 
+          echo "::set-output name=image::$./test.sh"
           
      - name: Fill in the new image ID in the Amazon ECS task definition
        id: task-def
