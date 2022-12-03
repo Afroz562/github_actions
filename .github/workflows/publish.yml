@@ -42,11 +42,12 @@ jobs:
           #aws ecr describe-images --repository-name ecs_repo\
           #--query 'sort_by(imageDetails,& imagePushedAt)[-1].imageTags[0]' --output yaml \
           #| tail -n 3 | awk -F'- ' '{print $2}'  
-          aws ecr describe-images --repository-name ecs_repo \
+          IMAGE=$(aws ecr describe-images --repository-name ecs_repo \
           --query 'sort_by(imageDetails,& imagePushedAt)[*].imageTags[0]' --output yaml \
-          | tail -n 3 | awk -F'- ' '{print $2}' | head -1 
+          | tail -n 3 | awk -F'- ' '{print $2}' | head -1)
+          # echo "IMAGE=$IMAGE"
            #echo $output
-           #echo "::set-output name=image::$output"
+           echo "::set-output name=image::$IMAGE"
           
           #docker pull 056584266475.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:latest
       - name: Fill in the new image ID in the Amazon ECS task definition
