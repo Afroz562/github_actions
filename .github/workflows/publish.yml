@@ -41,10 +41,11 @@ jobs:
           #aws ecr list-images --repository-name ecs_repo 
           #aws ecr describe-images --repository-name ecs_repo\
           #--query 'sort_by(imageDetails,& imagePushedAt)[-1].imageTags[0]' --output yaml \
-          #| tail -n 3 | awk -F'- ' '{print $2}'  
-          echo":: name=image::$(aws ecr describe-images --repository-name ecs_repo \
+          #| tail -n 3 | awk -F'- ' '{print $2}' 
+          run: echo "::set-output name={name}::{value}"
+          echo":: set-output name={image}::{$(aws ecr describe-images --repository-name ecs_repo \
           --query 'sort_by(imageDetails,& imagePushedAt)[*].imageTags[0]' --output yaml \
-          | tail -n 3 | awk -F'- ' '{print $2}' | head -1)"
+          | tail -n 3 | awk -F'- ' '{print $2}' | head -1)}"
           #echo "IMAGE=$(aws ecr describe-images --repository-name ecs_repo \
           --query 'sort_by(imageDetails,& imagePushedAt)[*].imageTags[0]' --output yaml \
           | tail -n 3 | awk -F'- ' '{print $2}' | head -1)" >> $GITHUB_OUTPUT 
