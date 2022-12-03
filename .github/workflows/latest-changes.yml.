@@ -1,10 +1,9 @@
 name: Manaual Rollback with previous release Changes
 on:
- # For manually triggering it
   workflow_dispatch:
   
-jobs:
-  latest-changes:
+ jobs:
+   latest-changes:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
