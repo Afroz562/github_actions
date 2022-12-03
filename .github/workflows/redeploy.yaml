@@ -70,12 +70,12 @@ jobs:
              
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
-         uses:donaldpiret/ecs-deploy@master 
+        uses: donaldpiret/ecs-deploy@master
         with:
-          task-definition: ${{ env.ECS_TASK_DEFINITION }}
-          container-name: ${{ env.CONTAINER_NAME }}
+           task-definition: ${{ env.ECS_TASK_DEFINITION }}
+           container-name: ${{ env.CONTAINER_NAME }}
           #image: ${{ steps.build-image.outputs.image }}
-          image: 056584266475.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:1.0-74-2022-12-03_12-56
+           image: 056584266475.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:1.0-74-2022-12-03_12-56
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
