@@ -42,7 +42,7 @@ jobs:
           #aws ecr describe-images --repository-name ecs_repo\
           #--query 'sort_by(imageDetails,& imagePushedAt)[-1].imageTags[0]' --output yaml \
           #| tail -n 3 | awk -F'- ' '{print $2}'  
-          aws ecr describe-images --repository-name ecs-repo \
+          aws ecr describe-images --repository-name ecs_repo \
           --query 'sort_by(imageDetails,& imagePushedAt)[-1].imageTags[0]'
            #echo $output
            #echo "::set-output name=image::$output"
