@@ -40,8 +40,10 @@ jobs:
      - name: Display the path
        run: | 
           echo $PATH
-          echo $pwd
-          chmod 755 ./test.sh . 
+          working-directory: ./temp
+          pwd
+          ls -lrt
+          chmod 755 ./test.sh .
           
      - name: Fill in the new image ID in the Amazon ECS task definition
        id: task-def
