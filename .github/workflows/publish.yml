@@ -50,7 +50,7 @@ jobs:
           task-definition: ${{ env.ECS_TASK_DEFINITION }}
           container-name: ${{ env.CONTAINER_NAME }}
           #image: 056584266475.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:${{ steps.version.outputs.image }}
-          image: 056584266475.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:1.0-71-202212030523
+          image: 056584266475.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:latest
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
