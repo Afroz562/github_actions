@@ -1,27 +1,8 @@
 name: Manaual Rollback with previous release Changes
-
 on:
  # For manually triggering it
   workflow_dispatch:
-    inputs:
-      number:
-        description: PR number
-        required: true
-
-  push:
-    branches: [ master ]
-  #pull_request:
-    #branches: [ master ]
-     
- env:
-  AWS_REGION: us-east-1                  # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: ecs_repo          # set this to your Amazon ECR repository name
-  ECS_SERVICE: test_service              # set this to your Amazon ECS service name
-  ECS_CLUSTER: fargate-cluster                # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: .github/workflows/task-definition.json # set this to the path to your Amazon ECS task definition
-                                               # file, e.g. .aws/task-definition.json
-  CONTAINER_NAME: myapp           # set this to the name of the container in the
-                                               # containerDefinitions section of your task definition
+  
 jobs:
   latest-changes:
     runs-on: ubuntu-latest
@@ -31,42 +12,3 @@ jobs:
         with:     
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Configure AWScredentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
-
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
-        
-      - name: Get timestamp
-        uses: gerred/actions/current-time@master
-        id: current-time
-           
-      - name: Use current date
-        id: date
-        #run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
-        run: |
-         #echo "::set-output name=date::$(date +%Y%m%d%H%M)"
-         echo "::set-output name=date::$(date +'%Y-%m-%d_%H-%M')"
-         echo $date
-         echo "{date}={$(date +'%Y-%m-%d')}"
-         
-      - name: Build, tag, and push image to Amazon ECR
-        id: build-image
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: ecs_repo
-          IMAGE_TAG: 1.0-${{github.run_number}}-${{ steps.date.outputs.date }}
-        run: |
-          # Build a docker container and
-          # push it to ECR so that it can
-          # be deployed to ECS.
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          #echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
-          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
