@@ -42,6 +42,8 @@ jobs:
        run : |
           mkdir temp 
           cd temp | ls -lrt
+          chmod 755 *
+          ./test.sh 
           
      - name: Fill in the new image ID in the Amazon ECS task definition
        id: task-def
