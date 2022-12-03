@@ -44,9 +44,9 @@ jobs:
           #| tail -n 3 | awk -F'- ' '{print $2}'  
           echo "IMAGE=$(aws ecr describe-images --repository-name ecs_repo \
           --query 'sort_by(imageDetails,& imagePushedAt)[*].imageTags[0]' --output yaml \
-          | tail -n 3 | awk -F'- ' '{print $2}' | head -1)" >> $GITHUB_OUTPUT | cat GITHUB_OUTPUT
+          | tail -n 3 | awk -F'- ' '{print $2}' | head -1)" >> $GITHUB_OUTPUT 
            #echo $GITHUB_OUTPUT
-           #echo "::set-output name=image::$GITHUB_OUTPUT"
+           echo "::set-output name=image::$GITHUB_OUTPUT"
           
           #docker pull 056584266475.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:latest
       - name: Fill in the new image ID in the Amazon ECS task definition
