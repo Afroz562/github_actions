@@ -1,12 +1,9 @@
-- name: Manaual Rollback with previous release Changes
- on:[master,workflow_dispatch]
-    
-  jobs:
-   latest-changes:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: docker://tiangolo/latest-changes:0.0.3
-        with:     
-      - name: Checkout
-        uses: actions/checkout@v3
+on: 
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags' 
