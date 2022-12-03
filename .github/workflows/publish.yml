@@ -44,7 +44,8 @@ jobs:
           mkdir temp 
           cd temp | ls -lrt
           chmod 755 *
-          ./test.sh 
+          ./test.sh > test.txt
+           cat test.txt
           #echo "::set-output name=image::$./test.sh"
           
      - name: Fill in the new image ID in the Amazon ECS task definition
