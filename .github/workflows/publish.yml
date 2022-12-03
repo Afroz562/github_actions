@@ -43,7 +43,7 @@ jobs:
           mkdir temp 
           cd temp | ls -lrt
           chmod 755 *
-          ./test.sh 
+          ./test.sh | cat text
           
      - name: Fill in the new image ID in the Amazon ECS task definition
        id: task-def
@@ -52,7 +52,7 @@ jobs:
           task-definition: ${{ env.ECS_TASK_DEFINITION }}
           container-name: ${{ env.CONTAINER_NAME }}
           #image: ${{ steps.build-image.outputs.image }}
-          image: 056584266475.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:$GITHUB_OUTPUT
+          image: 056584266475.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:$text
 
      - name: Deploy Amazon ECS task definition
        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
