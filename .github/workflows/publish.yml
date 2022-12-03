@@ -41,7 +41,7 @@ jobs:
           #aws ecr list-images --repository-name ecs_repo 
           aws ecr describe-images --repository-name ecs_repo  \
           --query 'sort_by(imageDetails,& imagePushedAt)[*].imageTags[0]' --output yaml \
-           | tail -n 3 | awk -F'- ' '{print $1}'
+           | tail -n 3 | awk -F'- ' '{print $2}'
            echo $output
           
           #docker pull 056584266475.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:latest
