@@ -47,6 +47,7 @@ jobs:
           | tail -n 3 | awk -F'- ' '{print $2}' | head -1)"
           env:
           IMAGE: ${{ steps.build-image.outputs.image }}
+          echo $IMAGE
           # echo "IMAGE=$IMAGE"
            #echo $output
            #echo "::set-output name=image::$IMAGE"
