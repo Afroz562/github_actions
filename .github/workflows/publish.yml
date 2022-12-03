@@ -43,7 +43,7 @@ jobs:
           #aws ecr describe-repositories
           #aws ecr list-images --repository-name ecs_repo 
           #echo "test=world" >> $GITHUB_OUTPUT
-           chmod 755 ./test.sh . | echo $GITHUB_OUTPUT
+           chmod 755 ./test.sh . | cat GITHUB_OUTPUT
          
           
      - name: Fill in the new image ID in the Amazon ECS task definition
