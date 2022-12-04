@@ -20,6 +20,8 @@ jobs:
   deploy:
     name: Re-Deploy
     runs-on: ubuntu-latest
+    outputs:
+      build_id: ${{ steps.build_step.outputs.build_id }}
     #container:
         #image: 056584266475.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:1.0-75-2022-12-03_13-01
 
@@ -37,17 +39,18 @@ jobs:
      - name: Login to Amazon ECR
        id: login-ecr
        uses: aws-actions/amazon-ecr-login@v1
-     - name: create Directory 
+     - name: Rollback image 
        id : build-image
        #working-directory: /temp
        run : |
            ls -lrt 
            chmod 755 *
            ./test.sh .
+           echo "build_id=$BUILD_ID" >> $GITHUB_OUTPUT
            #chmod 755 ./test.sh
            #ls -lrt
            #cat output.txt >>GITHUB_OUTPUT
-           echo "::set-output {name}=image::{056584266475.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:$env.GITHUB_OUTPUT}"
+           #echo "::set-output {name}=image::{056584266475.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:$env.GITHUB_OUTPUT}"
         
          # echo "BUILD_VERSION=$BUILD_VERSION" >> $GITHUB_ENV
           #echo "::set-output name=image::$GITHUB_OUTPUT"
