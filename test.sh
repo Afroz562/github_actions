@@ -20,6 +20,7 @@ result=$(aws ecr describe-images --output json --repository-name ecs_repo $DOCKE
 
 for val in $result; do
     echo "Run: Display IMAGE TAG $val"
-    echo "Run:build_id=$val"
-    echo "Run::set-output {name}=image::$val"
+    #echo "Run:build_id=$val"
+    #echo ::set-output {name}=image::$val"
+    echo "::set-output name=image::$val"
 done
