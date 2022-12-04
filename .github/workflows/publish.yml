@@ -40,7 +40,7 @@ jobs:
      - name: create Directory 
        id : build-image
        #working-directory: /temp
-       run : ./test.sh
+       run : chmod 755 ./test.sh
            #chmod 755 ./test.sh
            #ls -lrt
            #cat output.txt >>GITHUB_OUTPUT
