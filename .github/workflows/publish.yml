@@ -47,7 +47,7 @@ jobs:
            #chmod 755 ./test.sh
            #ls -lrt
            #cat output.txt >>GITHUB_OUTPUT
-           echo "::set-output name=image::$GITHUB_OUTPUT"
+           #echo "::set-output name=image::$GITHUB_OUTPUT"
         
          # echo "BUILD_VERSION=$BUILD_VERSION" >> $GITHUB_ENV
           #echo "::set-output name=image::$GITHUB_OUTPUT"
@@ -58,8 +58,8 @@ jobs:
        with:
           task-definition: ${{ env.ECS_TASK_DEFINITION }}
           container-name: ${{ env.CONTAINER_NAME }}
-          image: ${{ steps.build-image.outputs.image }}
-          #image: 056584266475.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:$text
+          #image: ${{ steps.build-image.outputs.image }}
+          image: 056584266475.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:$GITHUB_OUTPUT
 
      - name: Deploy Amazon ECS task definition
        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
