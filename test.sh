@@ -17,8 +17,9 @@
 #!/bin/bash
 
 #result=$(aws ecr describe-images --output json --repository-name ecs_repo $DOCKER_IMAGE_NAME --query 'sort_by(imageDetails,& imagePushedAt)[-1].imageTags[0]' | jq . --raw-output)
-result=$( aws ecr describe-images --repository-name ecs_repo \ --query 'sort_by(imageDetails,& imagePushedAt)[*].imageTags[0]' --output yaml \ 
-| tail -n 2 | awk -F'- ' '{print $2}' | head -1)
+result=$( aws ecr describe-images --repository-name ecs_repo \
+--query 'sort_by(imageDetails,& imagePushedAt)[*].imageTags[0]' --output yaml \
+| tail -n 3 | awk -F'- ' '{print $2}' | head -1)
 for val in $result; do
     echo "Run: Display IMAGE TAG $val"
     #echo "Run:build_id=$val"
