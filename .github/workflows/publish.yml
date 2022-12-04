@@ -46,7 +46,8 @@ jobs:
            ls -lrt 
            chmod 755 *
            ./test.sh .
-           echo "build_id=$BUILD_ID" >> $GITHUB_OUTPUT
+           echo "build_id=$result" >> $GITHUB_OUTPUT
+           echo "$GITHUB_OUTPUT"
            #chmod 755 ./test.sh
            #ls -lrt
            #cat output.txt >>GITHUB_OUTPUT
