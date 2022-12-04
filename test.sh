@@ -3,7 +3,7 @@
 #BUILD_VERSION="$1"
 aws ecr describe-images --repository-name ecs_repo \
 --query 'sort_by(imageDetails,& imagePushedAt)[*].imageTags[0]' --output yaml \
-| tail -n 3 | awk -F'- ' '{print $2}' | head -1 
+| tail -n 3 | awk -F'- ' '{print $2}' | head -1 >> ${{GITHUB_OUTPUT}} 
 #echo "$BUILD_VERSION"
 #>> env.$GITHUB_OUTPUT
 #AWS_REPOS=`aws ecr describe-images --repository-name ecs_repo\
