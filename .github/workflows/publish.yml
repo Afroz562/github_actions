@@ -39,10 +39,10 @@ jobs:
        uses: aws-actions/amazon-ecr-login@v1
      - name: create Directory 
        id : build-image
-       working-directory: ./temp
+       working-directory: /temp
        run : |
           mkdir temp 
-          cp -rf test.sh ./temp
+          cp -rf test.sh /temp
           cd temp | ls -lrt
           chmod 755 *
           #./test.sh > test.txt
