@@ -46,12 +46,12 @@ jobs:
            ls -lrt 
            chmod 755 *
            ./test.sh .
-           echo "build_id=$result" >> $GITHUB_OUTPUT
-           echo "$GITHUB_OUTPUT"
+           echo "build_id=$var1" 
+           #echo "$GITHUB_OUTPUT"
            #chmod 755 ./test.sh
            #ls -lrt
            #cat output.txt >>GITHUB_OUTPUT
-           #echo "::set-output {name}=image::{056584266475.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:$env.GITHUB_OUTPUT}"
+           echo "::set-output {name}=image::$build_id"
         
          # echo "BUILD_VERSION=$BUILD_VERSION" >> $GITHUB_ENV
           #echo "::set-output name=image::$GITHUB_OUTPUT"
