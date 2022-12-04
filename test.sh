@@ -20,5 +20,5 @@ result=$(aws ecr describe-images --output json --repository-name ecs_repo $DOCKE
 
 for val in $result; do
     echo "Run: Display IMAGE TAG $val"
-    echo "{image}={$val}" >> $GITHUB_OUTPUT
+    echo "Run:build_id=$val"
 done
