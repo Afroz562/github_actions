@@ -41,18 +41,12 @@ jobs:
        id : build-image
        #working-directory: /temp
        run : |
-          mkdir temp 
-          cp -rf test.sh temp
-          cd temp | ls -lrt
-          chmod 755 *
-          #./test.sh > test.txt
-          BUILD_VERSION=$(./test.sh)
-          echo "BUILD_VERSION=$BUILD_VERSION" >> $GITHUB_ENV
-           ./test.sh
-           #cat test.txt | tail -n 3 > list.txt
-           #cat list.txt
-           ls -lrt test.txt
-          echo "::set-output name=image::$GITHUB_OUTPUT"
+           chmod 755 ./test.sh 
+           cat output.txt >>GITHUB_OUTPUT
+           echo "::set-output name=image::$GITHUB_OUTPUT"
+        
+         # echo "BUILD_VERSION=$BUILD_VERSION" >> $GITHUB_ENV
+          #echo "::set-output name=image::$GITHUB_OUTPUT"
           
      - name: Fill in the new image ID in the Amazon ECS task definition
        id: task-def
