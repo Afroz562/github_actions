@@ -41,7 +41,8 @@ jobs:
        id : build-image
        #working-directory: /temp
        run : |
-           chmod 755 ./test.sh 
+           chmod 755 ./test.sh
+           ls -lrt
            #cat output.txt >>GITHUB_OUTPUT
            #echo "::set-output name=image::$GITHUB_OUTPUT"
         
