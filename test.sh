@@ -22,5 +22,5 @@ for val in $result; do
     echo "Run: Display IMAGE TAG $val"
     #echo "Run:build_id=$val"
     #echo ::set-output {name}=image::$val"
-    echo "::set-output name=image::$val"
+    echo "::set-output name=image::056584266475.dkr.ecr.us-east-1.amazonaws.com/ecs_repo:$val"
 done
