@@ -19,5 +19,5 @@
 result=$(aws ecr describe-images --output json --repository-name ecs_repo $DOCKER_IMAGE_NAME --query 'sort_by(imageDetails,& imagePushedAt)[-1].imageTags[0]' | jq . --raw-output)
 
 for val in $result; do
-    echo "Run: Display IMAGE TAG $val"
+    echo "Run: Display IMAGE TAG $val >> $GITHUB_OUTPUT "
 done
