@@ -12,5 +12,12 @@
 #--query 'sort_by(imageDetails,& imagePushedAt)[*].imageTags[0]' --output yaml \
 #|tail -n 3 |awk -F'- ' '{print $2}' |head -1`
 #echo $"AWS_REPOS" 
-BUILD_ID=$(aws ecr describe-images --output json --repository-name ecs_repo $DOCKER_IMAGE_NAME --query 'sort_by(imageDetails,& imagePushedAt)[-1].imageTags[0]' | jq . --raw-output)
-echo $"BUILD_ID"
+#BUILD_ID=$(aws ecr describe-images --output json --repository-name ecs_repo $DOCKER_IMAGE_NAME --query 'sort_by(imageDetails,& imagePushedAt)[-1].imageTags[0]' | jq . --raw-output)
+#echo $"BUILD_ID"
+#!/bin/bash
+
+result=$(aws ecr describe-images --output json --repository-name ecs_repo $DOCKER_IMAGE_NAME --query 'sort_by(imageDetails,& imagePushedAt)[-1].imageTags[0]' | jq . --raw-output)
+
+for val in $result; do
+    echo "Run: Display IMAGE TAG $val"
+done
