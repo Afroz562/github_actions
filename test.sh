@@ -17,7 +17,7 @@
 #!/bin/bash
 result=$( aws ecr describe-images --repository-name ecs_repo \
 --query 'sort_by(imageDetails,& imagePushedAt)[*].imageTags[0]' --output yaml \
-| tail -n 3 |  awk -F'- ' '{print $2}')
+| tail -n 3 |  awk -F'- ' '{print $1}')
 for val in $result; do
     echo "Run: Display IMAGE TAGS $val"
 done
