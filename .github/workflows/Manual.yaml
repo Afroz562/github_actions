@@ -1,12 +1,14 @@
 name: Manual Re Deployment
 on: 
   workflow_dispatch:
-    inputs:
-      inputs:
-      VERSION:
-        description: 'Version number'
-        default: '1.0-4-2022-12-03_17-30 ,1.0-4-2022-12-03_17-32'    
-        required: true
+   inputs: 
+       choice:
+        type : VERSION   
+        description: Select the Version number for redeploymet
+        options:
+          -  1.0-4-2022-12-03_17-30 
+          -  1.0-4-2022-12-03_17-31 
+          -  1.0-4-2022-12-03_17-32
       #image:
         #description: 'Roll back image'  
 env:
