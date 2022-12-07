@@ -1,16 +1,11 @@
-name: Manual Re Deployment
-on: 
+on:
   workflow_dispatch:
-   inputs: 
-       choice:
-        type : VERSION   
-        description: Select the Version number for redeploymet
-        options:
-          -  1.0-4-2022-12-03_17-30 
-          -  1.0-4-2022-12-03_17-31 
-          -  1.0-4-2022-12-03_17-32
-      #image:
-        #description: 'Roll back image'  
+    inputs:
+      VERSION:
+        description: 'Version number'
+        #default: 
+        required: true
+name: Deploy to Amazon ECS Dev
 env:
    AWS_REGION: us-east-1                  # set this to your preferred AWS region, e.g. us-west-1
    ECR_REPOSITORY: ecs_repo          # set this to your Amazon ECR repository name
