@@ -53,7 +53,7 @@ jobs:
         run: |
          #echo "::set-output name=date::$(date +%Y%m%d%H%M)"
          #echo "::set-output name=date::$(date +'%Y-%m-%d-%H-%M')"
-         echo "::set-output name=date::$(date +'%Y-%m-%d')"
+         echo "::set-output name=date::$(date +'%Y%m%d')"
          
          #echo $date
          #echo "{date}={$(date +'%Y-%m-%d')}"
