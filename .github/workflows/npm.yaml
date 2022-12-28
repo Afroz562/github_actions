@@ -1,0 +1,18 @@
+name:  Roll back preivous version image toAmazonECS
+
+on:
+  push:
+    branches: [ master ]
+  #pull_request:
+    #branches: [ master ]
+
+env:
+  ENV : prd
+  
+jobs:
+  npm-build:
+    name:build
+    runs-on: ubuntu-latest
+   steps:
+      - name: "Say Hello Mona it's Monday"
+        run:  "Today is $ENV"
