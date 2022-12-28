@@ -9,10 +9,9 @@ on:
 env:
   ENV : prd
   
-jobs:
-  npm-build:
-    name:build
-    runs-on: ubuntu-latest
+jobs: 
+ npm-build:
+   runs-on: ubuntu-latest
    steps:
-      - name: "Say Hello Mona it's Monday"
-        run:  "Today is $ENV"
+   - name: "Say Hello Mona it's Monday"
+     run:  "Today is $ENV"
