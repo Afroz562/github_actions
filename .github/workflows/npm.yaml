@@ -14,4 +14,4 @@ jobs:
    runs-on: ubuntu-latest
    steps:
    - name: "Say Hello Mona it's Monday"
-     run:  "Today is $ENV"
+     run: echo  "Today is $ENV"
