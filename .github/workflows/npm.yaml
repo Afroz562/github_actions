@@ -1,4 +1,4 @@
-name:  Roll back preivous version image toAmazonECS
+name:  test
 
 on:
   push:
